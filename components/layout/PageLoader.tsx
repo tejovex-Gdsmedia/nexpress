@@ -106,9 +106,10 @@ export default function PageLoader() {
       />
 
       {/* network — route lines + nodes */}
+      {/* FIX: vh sizing can shift as mobile browser chrome shows/hides during this brief intro — use dvh */}
       <motion.svg
         viewBox="0 0 400 300"
-        className="absolute left-1/2 top-1/2 h-[70vh] w-[90vw] max-w-[640px] -translate-x-1/2 -translate-y-1/2 opacity-80"
+        className="absolute left-1/2 top-1/2 h-[70dvh] w-[90vw] max-w-[640px] -translate-x-1/2 -translate-y-1/2 opacity-80"
         animate={{ opacity: revealing ? 0 : 0.8 }}
         transition={{ duration: 0.5 }}
       >
@@ -165,7 +166,8 @@ export default function PageLoader() {
           }}
           className="flex flex-col items-center gap-4"
         >
-          <Logo variant="light" size="lg" />
+          {/* FIX: Logo no longer eager-loads by default — this is the very first thing shown, so opt back in */}
+          <Logo variant="light" size="lg" priority />
           {textPhase && phase !== "done" && (
             <motion.p
               initial={{ opacity: 0, y: 6 }}

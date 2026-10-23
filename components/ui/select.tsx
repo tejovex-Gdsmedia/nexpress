@@ -38,7 +38,9 @@ const SelectContent = React.forwardRef<
       ref={ref}
       position={position}
       className={cn(
-        "relative z-50 max-h-72 min-w-[8rem] overflow-hidden rounded-xl border border-border-blue bg-white shadow-lg",
+        // FIX: same z-50 as the fixed Navbar header risked the dropdown losing a stacking
+        // tie against it — bump above it so an open Select can never render underneath
+        "relative z-[60] max-h-72 min-w-[8rem] overflow-hidden rounded-xl border border-border-blue bg-white shadow-lg",
         position === "popper" && "translate-y-1",
         className
       )}

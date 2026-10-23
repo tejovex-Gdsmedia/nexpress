@@ -46,6 +46,8 @@ export default function Hero() {
   const videoScale = useTransform(scrollYProgress, [0, 1], [1, reduced ? 1 : 1.12]);
   const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
 
+  // FIX: 100vh doesn't account for mobile browser chrome (address bar) showing/hiding,
+  // which made the hero jump in height while scrolling on iOS/Android — use dvh instead
   return (
     <motion.section
       ref={sectionRef}
@@ -53,7 +55,7 @@ export default function Hero() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="relative flex min-h-screen flex-col overflow-hidden bg-dark-navy pt-[88px]"
+      className="relative flex min-h-dvh flex-col overflow-hidden bg-dark-navy pt-[88px]"
     >
       {/* full-bleed video background */}
       <motion.div

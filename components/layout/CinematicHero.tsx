@@ -27,10 +27,11 @@ export default function CinematicHero({
   const imageY = useTransform(scrollYProgress, [0, 1], [0, reduced ? 0 : 90]);
   const contentY = useTransform(scrollYProgress, [0, 1], [0, reduced ? 0 : 30]);
 
+  // FIX: raw vh units shift height as mobile browser chrome shows/hides on scroll — use dvh
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[72vh] items-end overflow-hidden bg-dark-navy pt-[88px] sm:min-h-[78vh]"
+      className="relative flex min-h-[72dvh] items-end overflow-hidden bg-dark-navy pt-[88px] sm:min-h-[78dvh]"
     >
       {image ? (
         <motion.div className="absolute inset-0" style={{ y: imageY }} aria-hidden="true">

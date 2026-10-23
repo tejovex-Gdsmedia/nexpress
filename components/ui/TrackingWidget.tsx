@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   CheckCircle2,
@@ -38,6 +38,7 @@ export default function TrackingWidget({
   const [focused, setFocused] = useState(false);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(false);
+  const reduced = !!useReducedMotion();
 
   const light = theme === "light";
 
@@ -104,10 +105,11 @@ export default function TrackingWidget({
         >
           {loading ? (
             <span className="inline-flex items-center gap-1.5">
+              {/* FIX: looping opacity pulse ignored prefers-reduced-motion — hold it steady instead */}
               <motion.span
                 className="h-1.5 w-1.5 rounded-full bg-current"
-                animate={{ opacity: [0.3, 1, 0.3] }}
-                transition={{ duration: 1, repeat: Infinity }}
+                animate={reduced ? { opacity: 1 } : { opacity: [0.3, 1, 0.3] }}
+                transition={{ duration: 1, repeat: reduced ? 0 : Infinity }}
               />
               <span className="hidden sm:inline">Searching</span>
             </span>
@@ -140,10 +142,11 @@ export default function TrackingWidget({
                 Searching shipment
               </p>
               <div className={cn("relative h-px flex-1", light ? "bg-border-blue" : "bg-white/15")}>
+                {/* FIX: sliding route-indicator looped forever and ignored prefers-reduced-motion — park it mid-track instead */}
                 <motion.span
                   className="absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-sky shadow-[0_0_8px_rgba(30,127,216,0.8)]"
-                  animate={{ left: ["0%", "100%"] }}
-                  transition={{ duration: 1.1, repeat: Infinity, ease: "linear" }}
+                  animate={reduced ? { left: "50%" } : { left: ["0%", "100%"] }}
+                  transition={{ duration: 1.1, repeat: reduced ? 0 : Infinity, ease: "linear" }}
                 />
               </div>
             </div>

@@ -31,10 +31,13 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
+  // FIX: this fixed header toggles border/shadow/height classes on every scroll frame,
+  // which can flicker/repaint on iOS Safari — will-change-transform promotes it to its
+  // own compositor layer so those changes don't force a full repaint of the page below it
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 w-full border-b bg-white transition-all duration-300",
+        "fixed top-0 z-50 w-full border-b bg-white transition-all duration-300 will-change-transform",
         scrolled ? "border-border-blue shadow-sm" : "border-transparent"
       )}
     >
@@ -45,7 +48,8 @@ export default function Navbar() {
         )}
       >
         <Link href="/" aria-label="Nexpres (I) Logistics home" data-navbar-logo>
-          <Logo variant="default" size={scrolled ? "sm" : "md"} />
+          {/* FIX: Logo no longer eager-loads by default — this instance is above the fold, so opt back in */}
+          <Logo variant="default" size={scrolled ? "sm" : "md"} priority />
         </Link>
 
         <ul className="hidden items-center gap-1 lg:flex">
@@ -138,12 +142,15 @@ export default function Navbar() {
 
       <AnimatePresence>
         {mobileOpen && (
+          // FIX: 100vh left a gap/overflow as the mobile address bar collapsed — use dvh;
+          // overscroll-contain stops scrolling past the top/bottom of this panel from
+          // chaining into (and bouncing) the page behind it on iOS Safari
           <motion.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed inset-0 top-[72px] z-40 h-[calc(100vh-72px)] overflow-y-auto bg-white px-6 py-8 lg:hidden"
+            className="fixed inset-0 top-[72px] z-40 h-[calc(100dvh-72px)] overflow-y-auto overscroll-contain bg-white px-6 py-8 lg:hidden"
           >
             <ul className="flex flex-col gap-2">
               {navItems.map((item, i) => (

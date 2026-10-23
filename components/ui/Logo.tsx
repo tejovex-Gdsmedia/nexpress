@@ -8,6 +8,11 @@ interface LogoProps {
   variant?: LogoVariant;
   size?: LogoSize;
   className?: string;
+  // FIX: every Logo instance hard-coded priority (eager-load + preload), including the
+  // below-the-fold footer logo — that competed with real above-the-fold assets (hero
+  // video/images) for bandwidth. Now it defaults to lazy and only above-the-fold call
+  // sites (navbar, preloader) opt in.
+  priority?: boolean;
 }
 
 // natural aspect ratio of the provided lockup: 522 x 320
@@ -17,7 +22,7 @@ const sizeMap: Record<LogoSize, { full: number; icon: number; word: string; sub:
   lg: { full: 84, icon: 44, word: "text-3xl", sub: "text-[10px]" },
 };
 
-export default function Logo({ variant = "default", size = "md", className }: LogoProps) {
+export default function Logo({ variant = "default", size = "md", className, priority = false }: LogoProps) {
   const { full, icon, word, sub } = sizeMap[size];
 
   if (variant === "icon") {
@@ -29,7 +34,7 @@ export default function Logo({ variant = "default", size = "md", className }: Lo
           width={icon * 1.63}
           height={icon}
           style={{ height: icon, width: "auto" }}
-          priority
+          priority={priority}
         />
       </span>
     );
@@ -45,7 +50,7 @@ export default function Logo({ variant = "default", size = "md", className }: Lo
           width={icon * 1.63}
           height={icon}
           style={{ height: icon, width: "auto" }}
-          priority
+          priority={priority}
         />
         <span className="flex flex-col items-center leading-tight">
           <span className={cn("font-black uppercase tracking-wide text-white", word)}>
@@ -68,7 +73,7 @@ export default function Logo({ variant = "default", size = "md", className }: Lo
         width={full * 1.631}
         height={full}
         style={{ height: full, width: "auto" }}
-        priority
+        priority={priority}
       />
     </span>
   );

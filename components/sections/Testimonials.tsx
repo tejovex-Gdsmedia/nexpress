@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { testimonials } from "@/lib/constants";
 import { fadeUp, viewportOnce } from "@/lib/animations";
@@ -10,14 +10,19 @@ import { cn } from "@/lib/utils";
 export default function Testimonials() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const reduced = !!useReducedMotion();
 
+  // FIX: this auto-rotating carousel ran forever with no way to stop it and
+  // ignored prefers-reduced-motion — skip the auto-advance timer entirely
+  // when reduced motion is requested; manual prev/next controls still work.
   useEffect(() => {
+    if (reduced) return;
     const timer = setInterval(() => {
       setDirection(1);
       setIndex((prev) => (prev + 1) % testimonials.length);
     }, 3500);
     return () => clearInterval(timer);
-  }, []);
+  }, [reduced]);
 
   const go = (dir: number) => {
     setDirection(dir);

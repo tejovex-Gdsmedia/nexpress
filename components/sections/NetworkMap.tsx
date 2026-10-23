@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Building, MapPinned, Users, Warehouse } from "lucide-react";
 import CountUpNumber from "@/components/ui/CountUpNumber";
 import { networkHubs, networkStats } from "@/lib/constants";
@@ -14,6 +14,7 @@ const INDIA_OUTLINE =
 
 export default function NetworkMap() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const reduced = !!useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start 0.8", "end 0.3"],
@@ -59,12 +60,13 @@ export default function NetworkMap() {
 
               {networkHubs.map((hub, i) => (
                 <g key={hub.name} transform={`translate(${hub.x}, ${hub.y})`}>
+                  {/* FIX: this radar-ping pulse looped forever and ignored prefers-reduced-motion — freeze it at rest when reduced motion is requested */}
                   <motion.circle
                     r="6"
                     fill="#5BB8F5"
                     initial={{ scale: 1, opacity: 0.9 }}
-                    animate={{ scale: 2.5, opacity: 0 }}
-                    transition={{ duration: 2, repeat: Infinity, delay: i * 0.35, ease: "easeOut" }}
+                    animate={reduced ? { scale: 1, opacity: 0.9 } : { scale: 2.5, opacity: 0 }}
+                    transition={{ duration: 2, repeat: reduced ? 0 : Infinity, delay: i * 0.35, ease: "easeOut" }}
                   />
                   <circle r="5" fill="#5BB8F5" />
                   <text

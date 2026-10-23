@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 export default function AnimatedText({
   words,
@@ -13,13 +13,17 @@ export default function AnimatedText({
   className?: string;
 }) {
   const [index, setIndex] = useState(0);
+  const reduced = !!useReducedMotion();
 
+  // FIX: word rotation ran forever with no reduced-motion check — freeze on
+  // the first word instead of cycling when reduced motion is requested.
   useEffect(() => {
+    if (reduced) return;
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % words.length);
     }, interval);
     return () => clearInterval(timer);
-  }, [words.length, interval]);
+  }, [words.length, interval, reduced]);
 
   return (
     <span className="relative inline-block overflow-hidden align-bottom">

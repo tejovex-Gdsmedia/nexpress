@@ -15,7 +15,11 @@ export default function TabSwitcher({
   theme?: "light" | "dark";
 }) {
   return (
-    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
+    // FIX: horizontal scroller had no momentum scrolling hint on iOS and could
+    // chain its scroll into the page behind it at either end — add both
+    <div
+      className="flex gap-2 overflow-x-auto overscroll-x-contain pb-2 scrollbar-none [-webkit-overflow-scrolling:touch]"
+    >
       {tabs.map((tab) => (
         <button
           key={tab.key}

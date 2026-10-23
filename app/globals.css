@@ -18,12 +18,16 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  /* FIX: momentum scrolling was missing — add iOS Safari smooth/inertial scroll */
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
   color: var(--text-body);
   background: var(--white);
   overflow-x: hidden;
+  /* FIX: same iOS momentum-scroll gap as html above */
+  -webkit-overflow-scrolling: touch;
 }
 
 * {

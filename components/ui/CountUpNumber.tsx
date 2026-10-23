@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
+import { useInView, useReducedMotion } from "framer-motion";
 
 function easeOutExpo(x: number): number {
   return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
@@ -29,10 +29,17 @@ export default function CountUpNumber({
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.4 });
+  const reduced = !!useReducedMotion();
   const [display, setDisplay] = useState("0");
 
   useEffect(() => {
     if (!inView) return;
+
+    // FIX: the rAF count-up ignored prefers-reduced-motion — jump straight to the final value instead
+    if (reduced) {
+      setDisplay(formatNumber(value, isDecimal));
+      return;
+    }
 
     let start: number | null = null;
     let frame: number;
@@ -51,7 +58,7 @@ export default function CountUpNumber({
 
     frame = requestAnimationFrame(step);
     return () => cancelAnimationFrame(frame);
-  }, [inView, value, duration, isDecimal]);
+  }, [inView, value, duration, isDecimal, reduced]);
 
   return (
     <span ref={ref} className={className}>
