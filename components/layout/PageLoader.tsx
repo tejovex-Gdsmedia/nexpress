@@ -145,37 +145,39 @@ export default function PageLoader() {
         ))}
       </motion.svg>
 
-      <motion.div
-        ref={introRef}
-        initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
-        animate={{
-          opacity: phase === "done" ? 0 : 1,
-          filter: "blur(0px)",
-          scale: revealing && target ? target.scale : 1,
-          x: revealing && target ? target.x : 0,
-          y: revealing && target ? target.y : 0,
-        }}
-        transition={{
-          opacity: { duration: phase === "done" ? 0.25 : 0.6 },
-          filter: { duration: 0.7, ease: "easeOut" },
-          scale: { duration: revealing ? 0.7 : 0.6, ease: [0.76, 0, 0.24, 1] },
-          x: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
-          y: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
-        }}
-        className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-4"
-      >
-        <Logo variant="light" size="lg" />
-        {textPhase && phase !== "done" && (
-          <motion.p
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="eyebrow !text-light-blue"
-          >
-            Connecting Your Network
-          </motion.p>
-        )}
-      </motion.div>
+      <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+        <motion.div
+          ref={introRef}
+          initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+          animate={{
+            opacity: phase === "done" ? 0 : 1,
+            filter: "blur(0px)",
+            scale: revealing && target ? target.scale : 1,
+            x: revealing && target ? target.x : 0,
+            y: revealing && target ? target.y : 0,
+          }}
+          transition={{
+            opacity: { duration: phase === "done" ? 0.25 : 0.6 },
+            filter: { duration: 0.7, ease: "easeOut" },
+            scale: { duration: revealing ? 0.7 : 0.6, ease: [0.76, 0, 0.24, 1] },
+            x: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
+            y: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
+          }}
+          className="flex flex-col items-center gap-4"
+        >
+          <Logo variant="light" size="lg" />
+          {textPhase && phase !== "done" && (
+            <motion.p
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="eyebrow !text-light-blue"
+            >
+              Connecting Your Network
+            </motion.p>
+          )}
+        </motion.div>
+      </div>
 
       {/* navy door panels — slide apart on reveal */}
       <motion.div
