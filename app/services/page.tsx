@@ -45,11 +45,17 @@ export default function ServicesPage() {
                 className="group relative aspect-[4/5] overflow-hidden rounded-2xl"
               >
                 {visual.kind === "photo" ? (
+                  // FIX: the first row (i < 3) renders above the fold with no scrolling —
+                  // it was relying on native lazy-loading like every other tile, so it could
+                  // still show a blank/placeholder moment on first paint. priority preloads
+                  // it immediately; sizes now accounts for the max-w-7xl container cap instead
+                  // of a raw vw value, so the responsive-image picker isn't over-conservative.
                   <Image
                     src={visual.src}
                     alt=""
                     fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    priority={i < 3}
+                    sizes="(min-width: 1280px) 416px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     style={{ objectFit: "cover", objectPosition: visual.focal }}
                     className="transition-transform duration-700 group-hover:scale-110"
                   />

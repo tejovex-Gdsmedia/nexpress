@@ -9,7 +9,13 @@ import { fadeUp, fadeUpContainer, viewportOnce } from "@/lib/animations";
 
 const conceptIcons = { Route, BarChart3, Map, Package, Truck, MapPin };
 
-function PhotoTile({ item }: { item: Extract<GalleryItem, { kind: "photo" }> }) {
+function PhotoTile({
+  item,
+  priority = false,
+}: {
+  item: Extract<GalleryItem, { kind: "photo" }>;
+  priority?: boolean;
+}) {
   const [failed, setFailed] = useState(false);
 
   return (
@@ -18,10 +24,15 @@ function PhotoTile({ item }: { item: Extract<GalleryItem, { kind: "photo" }> }) 
       className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-dark-navy"
     >
       {!failed ? (
+        // FIX: every gallery photo relied on native lazy-loading, including the first
+        // tile, which on most service pages sits just below the hero (near the fold) —
+        // give it priority so it starts fetching immediately instead of waiting on the
+        // browser's own lazy-load margin.
         <Image
           src={item.src}
           alt={item.caption}
           fill
+          priority={priority}
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           style={{ objectFit: "cover", objectPosition: item.focal }}
           className="transition-transform duration-500 group-hover:scale-105"
@@ -74,7 +85,7 @@ export default function ServiceGallery({ items }: { items: GalleryItem[] }) {
     >
       {items.map((item, i) =>
         item.kind === "photo" ? (
-          <PhotoTile key={i} item={item} />
+          <PhotoTile key={i} item={item} priority={i === 0} />
         ) : (
           <ConceptTile key={i} item={item} />
         )

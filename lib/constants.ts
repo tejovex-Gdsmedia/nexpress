@@ -253,47 +253,47 @@ export type ServiceVisual =
 export const serviceVisuals: Record<ServiceKey, ServiceVisual> = {
   "express-parcel": {
     kind: "photo",
-    src: "https://images.unsplash.com/photo-1620455800201-7f00aeef12ed",
+    src: "https://images.unsplash.com/photo-1620455800201-7f00aeef12ed?w=2000&q=80",
     focal: "center 35%",
   },
   warehousing: {
     kind: "photo",
-    src: "https://images.unsplash.com/photo-1553413077-190dd305871c",
+    src: "https://images.unsplash.com/photo-1553413077-190dd305871c?w=2000&q=80",
     focal: "center 35%",
   },
   "part-truckload": {
     kind: "photo",
-    src: "https://images.unsplash.com/photo-1737713715449-07fef38d11e5",
+    src: "https://images.unsplash.com/photo-1737713715449-07fef38d11e5?w=2000&q=80",
     focal: "center 70%",
   },
   "full-truckload": {
     kind: "photo",
-    src: "https://images.unsplash.com/photo-1564957341116-ab017c60daca",
+    src: "https://images.unsplash.com/photo-1564957341116-ab017c60daca?w=2000&q=80",
     focal: "center 65%",
   },
   international: {
     kind: "photo",
-    src: "https://images.unsplash.com/photo-1613690399151-65ea69478674",
+    src: "https://images.unsplash.com/photo-1613690399151-65ea69478674?w=2000&q=80",
     focal: "center",
   },
   "local-delivery": {
     kind: "photo",
-    src: "https://images.unsplash.com/photo-1788985375169-1cfe5ea940d0",
+    src: "https://images.unsplash.com/photo-1788985375169-1cfe5ea940d0?w=2000&q=80",
     focal: "center 30%",
   },
   transportone: {
     kind: "photo",
-    src: "https://images.unsplash.com/photo-1544451905-c7f1a9130570",
+    src: "https://images.unsplash.com/photo-1544451905-c7f1a9130570?w=2000&q=80",
     focal: "center",
   },
   "data-intelligence": {
     kind: "photo",
-    src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
+    src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=2000&q=80",
     focal: "center",
   },
   maps: {
     kind: "photo",
-    src: "https://images.unsplash.com/photo-1594935975218-a3596da034a3",
+    src: "https://images.unsplash.com/photo-1594935975218-a3596da034a3?w=2000&q=80",
     focal: "center",
   },
 };
@@ -308,34 +308,34 @@ export type GalleryItem =
 
 export const serviceGallery: Record<ServiceKey, GalleryItem[]> = {
   "express-parcel": [
-    { kind: "photo", src: "https://images.unsplash.com/photo-1549194388-f61be84a6e9e", focal: "center", caption: "Processing — scanned, sorted and routed" },
-    { kind: "photo", src: "https://images.unsplash.com/photo-1790364757239-2bd1ab3b5f31", focal: "center", caption: "Transportation — moving toward its destination" },
-    { kind: "photo", src: "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55", focal: "center", caption: "Last-Mile Delivery — reaching the customer" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1549194388-f61be84a6e9e?w=2000&q=80", focal: "center", caption: "Processing — scanned, sorted and routed" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1790364757239-2bd1ab3b5f31?w=2000&q=80", focal: "center", caption: "Transportation — moving toward its destination" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=2000&q=80", focal: "center", caption: "Last-Mile Delivery — reaching the customer" },
   ],
   warehousing: [
-    { kind: "photo", src: "https://images.unsplash.com/photo-1622030411594-c282a63aa1bc", focal: "center", caption: "Storage — organized in appropriate locations" },
-    { kind: "photo", src: "https://images.unsplash.com/photo-1622127739239-1905bbaa21b8", focal: "center 30%", caption: "Picking & Packing — prepared for dispatch" },
-    { kind: "photo", src: "https://images.unsplash.com/photo-1668786710595-afc9d92f304e", focal: "center", caption: "Dispatch — handed over for transportation" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1622030411594-c282a63aa1bc?w=2000&q=80", focal: "center", caption: "Storage — organized in appropriate locations" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1622127739239-1905bbaa21b8?w=2000&q=80", focal: "center 30%", caption: "Picking & Packing — prepared for dispatch" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1668786710595-afc9d92f304e?w=2000&q=80", focal: "center", caption: "Dispatch — handed over for transportation" },
   ],
   "part-truckload": [
-    { kind: "photo", src: "https://images.unsplash.com/photo-1778015862504-b877b548266e", focal: "center", caption: "Consolidation — compatible shipments grouped together" },
-    { kind: "photo", src: "https://images.unsplash.com/photo-1591768793355-74d04bb6608f", focal: "center 40%", caption: "Line-Haul Transportation — moving through the network" },
-    { kind: "photo", src: "https://images.unsplash.com/photo-1777793918890-0557166475bb", focal: "center", caption: "Final Delivery — separated at destination" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1778015862504-b877b548266e?w=2000&q=80", focal: "center", caption: "Consolidation — compatible shipments grouped together" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1591768793355-74d04bb6608f?w=2000&q=80", focal: "center 40%", caption: "Line-Haul Transportation — moving through the network" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1777793918890-0557166475bb?w=2000&q=80", focal: "center", caption: "Final Delivery — separated at destination" },
   ],
   "full-truckload": [
-    { kind: "photo", src: "https://images.unsplash.com/photo-1586781383963-8e66f88077ec", focal: "center", caption: "Suitable for Large Shipments" },
-    { kind: "photo", src: "https://images.unsplash.com/photo-1778016193071-c841d6a2fc6a", focal: "center 35%", caption: "Dedicated Capacity — no shared cargo" },
-    { kind: "photo", src: "https://images.unsplash.com/photo-1586206670130-4c6d8e646c9a", focal: "center 30%", caption: "Better Shipment Control" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1586781383963-8e66f88077ec?w=2000&q=80", focal: "center", caption: "Suitable for Large Shipments" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1778016193071-c841d6a2fc6a?w=2000&q=80", focal: "center 35%", caption: "Dedicated Capacity — no shared cargo" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1586206670130-4c6d8e646c9a?w=2000&q=80", focal: "center 30%", caption: "Better Shipment Control" },
   ],
   international: [
-    { kind: "photo", src: "https://images.unsplash.com/photo-1571086291540-b137111fa1c7", focal: "center", caption: "International Transportation — by air" },
-    { kind: "photo", src: "https://images.unsplash.com/photo-1587149185211-28a2ef4c9a10", focal: "center", caption: "International Transportation — by ocean" },
-    { kind: "photo", src: "https://images.unsplash.com/photo-1634646809203-f3b4adff9127", focal: "center", caption: "Documentation & Customs Coordination" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1571086291540-b137111fa1c7?w=2000&q=80", focal: "center", caption: "International Transportation — by air" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1587149185211-28a2ef4c9a10?w=2000&q=80", focal: "center", caption: "International Transportation — by ocean" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1634646809203-f3b4adff9127?w=2000&q=80", focal: "center", caption: "Documentation & Customs Coordination" },
   ],
   "local-delivery": [
-    { kind: "photo", src: "https://images.unsplash.com/photo-1664353655022-35b9b0101d5f", focal: "center", caption: "Pickup — collected from your business location" },
-    { kind: "photo", src: "https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1", focal: "center 25%", caption: "Last-Mile Delivery — through the local network" },
-    { kind: "photo", src: "https://images.unsplash.com/photo-1758523670564-d1d6a734dc0b", focal: "center", caption: "Delivery Confirmation" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1664353655022-35b9b0101d5f?w=2000&q=80", focal: "center", caption: "Pickup — collected from your business location" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?w=2000&q=80", focal: "center 25%", caption: "Last-Mile Delivery — through the local network" },
+    { kind: "photo", src: "https://images.unsplash.com/photo-1758523670564-d1d6a734dc0b?w=2000&q=80", focal: "center", caption: "Delivery Confirmation" },
   ],
   transportone: [
     { kind: "concept", icon: "Route", caption: "Plan — map movement by shipment priority" },
