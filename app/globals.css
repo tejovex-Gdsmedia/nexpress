@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #1a3a8f;
+  --sky-blue: #1e7fd8;
+  --light-blue: #5bb8f5;
+  --white: #ffffff;
+  --off-white: #f4f8ff;
+  --dark-navy: #0d1f5c;
+  --text-body: #374151;
+  --text-muted: #6b7280;
+  --border: #dbeafe;
+  --success: #10b981;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--text-body);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+* {
+  scrollbar-width: thin;
+}
+
+::selection {
+  background: var(--light-blue);
+  color: var(--white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--sky-blue);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--sky-blue);
+}
+
+.container-px {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .container-px {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
