@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Building2, MapPin, Radar, ShoppingBag, Send } from "lucide-react";
+import { ArrowRight, Building2, LineChart, MapPin, Radar, ShoppingBag, Send } from "lucide-react";
 import { solutionCards } from "@/lib/constants";
 import { fadeUp, fadeUpContainer, viewportOnce } from "@/lib/animations";
 import SectionWatermark from "@/components/ui/SectionWatermark";
 
-const icons = { ShoppingBag, Send, Building2 };
+const icons = { ShoppingBag, Send, Building2, LineChart };
 
 const riskLevels = [
   { label: "Low Risk", tone: "bg-success" },

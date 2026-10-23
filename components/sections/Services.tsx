@@ -7,6 +7,7 @@ import {
   ArrowRight,
   BarChart3,
   Globe,
+  Map,
   MapPin,
   Package,
   Route,
@@ -26,6 +27,7 @@ const icons = {
   MapPin,
   Route,
   BarChart3,
+  Map,
 };
 
 const tabServices = services.filter((s) => s.key !== "maps");
